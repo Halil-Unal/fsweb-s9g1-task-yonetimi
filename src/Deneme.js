@@ -21,11 +21,11 @@ import { useForm } from "react-hook-form";
   
     console.log("hatalar", errors);
 return (
-
+<form className="taskForm" onSubmit={handleSubmit}>
   
       <div className="form-line">
         
-<form className="taskForm" onSubmit={handleSubmit}>
+
         <label className="input-label">
           Başlık
         </label>
@@ -43,7 +43,7 @@ return (
    
          
         />
-     
+     </div>
         {errors.title && (
           <div style={{ color: "red", fontSize: 12 }}>
             {errors.title.message}
@@ -80,16 +80,14 @@ return (
                 type="checkbox"
                 name="people"
                 value={p}
-                control={control}
-                rules={{ required: true }}
+               
                 {...register("people", {
-                  min: {
-                  value:1,
-                    message: "en az bir kişi seçin"
-                  },
-                  max: {
-                    value:3,
-                      message: "en fazla 3 kişi seçin"
+                  required: "En az bir kutu seçiniz",
+                  
+                  validate: {
+                   
+                    lessThanTen: v => v.length <= 3 || "en fazla 3 kişi seçin",
+                     
                     }
                 })}
               
@@ -98,10 +96,11 @@ return (
             </label>
           ))}
         </div>
-        {errors.people && errors.people.type === "min" && (
+        {errors.people &&  (
   <div style={{ color: "red", fontSize: 12 }}>{errors.people.message}</div>
 )}
     </div>
+    
     <div className="form-line">
         <button
           className="submit-button"
@@ -110,9 +109,11 @@ return (
         >
           Kaydet
         </button>
+        
       </div>
+      
       </form>
-      </div>
+     
 
 );
 }
