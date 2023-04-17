@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const PeopleForm = ({ kisiler, submitFn }) => {
+  const notify = () => toast("kişi eklendi!");
   const [isim, setIsim] = useState("");
   const [error, setError] = useState(null);
 
@@ -44,9 +46,21 @@ const PeopleForm = ({ kisiler, submitFn }) => {
           className="submit-button"
           type="submit"
           disabled={isim.length === 0 || error}
+          onClick={notify}
         >
           Ekle
         </button>
+        <ToastContainer
+        	position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light" />
       </div>
     </form>
   );
