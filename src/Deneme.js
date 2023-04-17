@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-
+import { nanoid } from "nanoid";
  function Deneme(props) {
    // const notify = () => toast("Wow so easy!");
+  const {kisiler,submitFn}=props;
     const {
       control,
       register,
@@ -20,9 +21,17 @@ import { useForm } from "react-hook-form";
     }
   
     console.log("hatalar", errors);
-    
+
+    function MyhandleSubmit(data) {
+     console.log(data);
+      submitFn({
+       ...data,
+        id: nanoid(5),
+        status: "yapılacak",
+      });
+    }
 return (
-<form className="taskForm" onSubmit={handleSubmit}>
+<form className="taskForm" onSubmit={handleSubmit(MyhandleSubmit)}>
   
       <div className="form-line">
         
@@ -75,7 +84,7 @@ return (
       <div className="form-line">
         <label className="input-label">İnsanlar</label>
         <div>
-          {props.kisiler.map((p) => (
+          {kisiler.map((p) => (
             <label className="input-checkbox" key={p}>
               <input
                 type="checkbox"

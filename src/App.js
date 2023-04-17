@@ -29,7 +29,7 @@ function App() {
         <div className="form-container">
           <h2>Yeni Task</h2>
           { /*<TaskForm kisiler={team} submitFn={handleTaskSubmit} /> */}
-         { <Deneme kisiler={team} ></Deneme>}
+         { <Deneme  submitFn={handleTaskSubmit}  kisiler={team} ></Deneme>}
           <TaskHookForm kisiler={team} submitFn={handleTaskSubmit} />
         </div>
 
