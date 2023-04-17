@@ -20,6 +20,7 @@ import { useForm } from "react-hook-form";
     }
   
     console.log("hatalar", errors);
+    
 return (
 <form className="taskForm" onSubmit={handleSubmit}>
   
